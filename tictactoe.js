@@ -26,8 +26,12 @@
 
         if ( turnCount == 1 ) {
 
-            let playerNum = getPlayer(2);
-            
+            let playerNum = getPlayer(100);
+            if ( playerNum === 0 ) {
+                playerNum = 0;
+            } else {
+                playerNum = 1;
+            }
             if ( playerNum === 0 ) {
                document.getElementById('firstTurn').innerText = "You go first";
                 nextTurn(playerNum, turnCount);
@@ -41,7 +45,7 @@
     })
 
     function getPlayer(num) {
-        return Math.floor(Math.random() * Math.floor(num));
+        return Math.floor(Math.random() * Math.floor(num)) % 2;
     }
 
     function nextTurn(playerNum) {
@@ -153,30 +157,78 @@
               break;
 
             case 4:
+                console.log(turnCount)
                 var isThreat = checkThreat();
-                if ( isThreat ===  true ) {
-                turnCount += 1;
-                playerNum = 0;
-                nextTurn(playerNum);
-                break;
-                } else {
-                    var isOpp = checkOpp();
-                }
-                
-                if ( isOpp === true ) {
-                    turnCount += 1;
+	
+                if ( isThreat === true ) {
+                        
+                    turnCount++;
                     playerNum = 0;
                     nextTurn(playerNum);
                     break;
-                } else {
-                    for ( i = 0; i < 9; i++ ) {
-                        if ( moves[i].innerText === "" ) {
-                            moves[i].innerText = "O";
-                            i = 10;
-                        }
+            
+                } else if ( moves[4].innerText === "X" && ( moves[0].innerText === "X" || moves[2].innerText === "X" || moves[6].innerText === "X" || moves[8].innerText === "X" ) ) {
+            
+                    if ( moves[0].innerText === "X" && moves[8].innerText === "O" ) {
+                        moves[2].innerText = "O";	
+                        turnCount++;
+                        playerNum = 0;
+                        nextTurn(playerNum);
+                        break;
+
+                    } else if ( moves[2].innerText === "X" && moves[6].innerText === "O" ) {
+                        moves[0].innerText = "O";
+                        turnCount++;
+                        playerNum = 0;
+                        nextTurn(playerNum);
+                        break;
+
+                    } else if ( moves[6].innerText === "X" && moves[2].innerText === "O" ) {
+                        moves[0].innerText = "O";
+                        turnCount++;
+                        playerNum = 0;
+                        nextTurn(playerNum);
+                        break;
+
+                    } else if ( moves[8].innerText === "X" && moves[0].innerText === "O" ) {
+                        moves[2].innerText = "O";
+                        turnCount++;
+                        playerNum = 0;
+                        nextTurn(playerNum);
+                        break;
                     }
-                    break;
+            
+
+            
+                } else {
+            
+                    var isOpp = checkOpp();
+            
+                    if ( isOpp === true ) {
+                        turnCount++;
+                        playerNum = 0;
+                        nextTurn(playerNum);
+                        break;
+            
+                    } else if ( isOpp === false ) {
+            
+                            for ( i = 0; i < 9; i++ ) {
+            
+                                if ( moves[i].innerText === "" ) {
+                                    moves[i].innerText = "O";
+                                    i = 10;
+                                }
+                            }
+                        turnCount++;
+                        playerNum = 0;
+                        nextTurn(playerNum);
+                        break;
+            
+                    }
+            
                 }
+            break;
+                
             case 5:
             case 7:
                 var isTicTacToe = checkTicTacToe();
@@ -427,119 +479,170 @@
             //check by row for 2 Xs and and open space where a threat exists
             //row 1
             if ( moves[0].innerText === "X" && moves[1].innerText === "X" && moves[2].innerText === "" ){
-                moves[2].innerText = "O";
-                isThreat = true;
-               
-                return isThreat;
+               if ( moves[2].innerText == "" ) {
+                   moves[2].innerText = "O";
+                   isThreat = true;
+                    return isThreat;
+               }
+                
+
             } else if ( moves[0].innerText === "X" && moves[1].innerText === "" && moves[2].innerText === "X" ) {
-                moves[1].innerText = "O";
-                isThreat = true;
-                
-                return isThreat;
+                if ( moves[1].innerText == "" ) {
+                    moves[1].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
+
             } else if ( moves[0].innerText === "" && moves[1].innerText === "X" && moves[2].innerText === "X" ) {
-                moves[0].innerText = "O";
-                isThreat = true;
-                
-                return isThreat;
+                if ( moves[0].innerText == "" ) {
+                    moves[0].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             //row 2
             } else if ( moves[3].innerText === "X" && moves[4].innerText === "X" && moves[5].innerText === "" ){
-                moves[5].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[5].innerText == "" ) {
+                    moves[5].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[3].innerText === "X" && moves[4].innerText === "" && moves[5].innerText === "X" ) {
-                moves[4].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[4].innerText == "" ) {
+                    moves[4].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[3].innerText === "" && moves[4].innerText === "X" && moves[5].innerText === "X" ) {
-                moves[3].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[3].innerText == "" ) {
+                    moves[3].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             }
             //row 3
               else if ( moves[6].innerText === "X" && moves[7].innerText === "X" && moves[8].innerText === "" ){
-                moves[8].innerText = "O";
-                isThreat = true;
-                return isThreat;
+
+                if ( moves[8].innerText == "" ) {
+                    moves[8].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[6].innerText === "X" && moves[7].innerText === "" && moves[8].innerText === "X" ) {
-                moves[7].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[7].innerText == "" ) {
+                    moves[7].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[6].innerText === "" && moves[7].innerText === "X" && moves[8].innerText === "X" ) {
-                moves[6].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[6].innerText == "" ) {
+                    moves[6].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             }
 
             // check by column
             //col 1
              else if ( moves[0].innerText === "X" && moves[3].innerText === "X" && moves[6].innerText === "" ){
-                moves[6].innerText = "O";
-                isThreat = true;
-                return isThreat;
+ 
+                if ( moves[6].innerText == "" ) {
+                    moves[6].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[0].innerText === "X" && moves[3].innerText === "" && moves[6].innerText === "X" ) {
-                moves[3].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[3].innerText == "" ) {
+                    moves[3].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[0].innerText === "" && moves[3].innerText === "X" && moves[6].innerText === "X" ) {
-                moves[0].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[0].innerText == "" ) {
+                    moves[0].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             //col2
             } else if ( moves[1].innerText === "X" && moves[4].innerText === "X" && moves[7].innerText === "" ){
-                moves[7].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[7].innerText == "" ) {
+                    moves[7].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[1].innerText === "X" && moves[4].innerText === "" && moves[7].innerText === "X" ) {
-                moves[4].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[4].innerText == "" ) {
+                    moves[4].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[1].innerText === "" && moves[4].innerText === "X" && moves[7].innerText === "X" ) {
-                moves[1].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[1].innerText == "" ) {
+                    moves[1].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             }
             //col 3
               else if ( moves[2].innerText === "X" && moves[5].innerText === "X" && moves[8].innerText === "" ){
-                moves[8].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[8].innerText == "" ) {
+                    moves[8].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[2].innerText === "X" && moves[5].innerText === "" && moves[8].innerText === "X" ) {
-                moves[5].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[5].innerText == "" ) {
+                    moves[5].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[2].innerText === "" && moves[5].innerText === "X" && moves[8].innerText === "X" ) {
-                moves[2].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[2].innerText == "" ) {
+                    moves[2].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             }
 
             //now check the diagonal
             // top left to bottom right
              else if ( moves[0].innerText === "X" && moves[4].innerText === "X" && moves[8].innerText === "" ){
-                moves[8].innerText = "O";
-                isThreat = true;
-                return isThreat;
+
+                if ( moves[8].innerText == "" ) {
+                    moves[8].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[0].innerText === "X" && moves[4].innerText === "" && moves[8].innerText === "X" ) {
-                moves[4].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[4].innerText == "" ) {
+                    moves[4].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[0].innerText === "" && moves[4].innerText === "X" && moves[8].innerText === "X" ) {
-                moves[0].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[0].innerText == "" ) {
+                    moves[0].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             //top right to bottom left
             } else if ( moves[2].innerText === "X" && moves[4].innerText === "X" && moves[6].innerText === "" ){
-                moves[6].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[6].innerText == "" ) {
+                    moves[6].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[2].innerText === "X" && moves[4].innerText === "" && moves[6].innerText === "X" ) {
-                moves[4].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[4].innerText == "" ) {
+                    moves[4].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else if ( moves[2].innerText === "" && moves[4].innerText === "X" && moves[6].innerText === "X" ) {
-                moves[2].innerText = "O";
-                isThreat = true;
-                return isThreat;
+                if ( moves[2].innerText == "" ) {
+                    moves[2].innerText = "O";
+                    isThreat = true;
+                     return isThreat;
+                }
             } else {
                 isThreat = false;
                 return isThreat;
@@ -550,13 +653,76 @@
 
             
 
-            //check if O has center square and if so look for the correct oportunity
+            //check if O has center square and if so look for the correct oportunity across diagonal, middle rown and center column
+
             if( moves[4].innerText === "O" ) {
 
-                if ( moves[0].innerText === "O" && moves[1].innerText === "" && moves[2].innerText === "" ) {
-                    moves[1]
+                if ( moves[0].innerText === ""  && moves[8].innerText === "" ) {
+                    moves[0].innerText = "O";
+                } else if ( moves[2].innerText === "" && moves[6].innerText === "" ) {
+                    moves[2].innerText = "O";
+                } else if ( moves[1].innerText === "" && moves[7].innerText === "" ) {
+                    moves[1].innerText = "O";
+                } else if ( moves[3].innerText === "" && moves[5].innerText === "" ) {
+                    moves[3].innerText = "O"
                 }
 
+            } else {
+
+                // look for opportunity to make a threat in row 1
+                if( moves[0].innerText === "O" && moves[1].innerText === "" && moves[2].innerText === "" ) {
+                    moves[1].innerText = "O";
+                } else if ( moves[0].innerText === "" && moves[1].innerText === "O" && moves[2].innerText === "") {
+                    moves[0].innerText = "O";
+                } else if ( moves[0].innerText === "" && moves[1].innerText === "" && moves[2].innerText === "O") {
+                    mvoes[0].innerText = "O";
+                } 
+                // look for opportunity to make a threat in row 2
+                  else if( moves[3].innerText === "O" && moves[4].innerText === "" && moves[5].innerText === "" ) {
+                    moves[4].innerText = "O";
+                } else if ( moves[3].innerText === "" && moves[4].innerText === "O" && moves[5].innerText === "") {
+                    moves[3].innerText = "O";
+                } else if ( moves[3].innerText === "" && moves[4].innerText === "" && moves[5].innerText === "O") {
+                    mvoes[4].innerText = "O";
+                }
+
+                // look for opportunity to make a threat in row 3
+                  else if( moves[6].innerText === "O" && moves[7].innerText === "" && moves[8].innerText === "" ) {
+                    moves[7].innerText = "O";
+                } else if ( moves[6].innerText === "" && moves[7].innerText === "O" && moves[8].innerText === "") {
+                    moves[6].innerText = "O";
+                } else if ( moves[6].innerText === "" && moves[7].innerText === "" && moves[8].innerText === "O") {
+                    mvoes[7].innerText = "O";
+                }
+
+                // look for opportunity to make a threat in column 1
+                  else if( moves[0].innerText === "O" && moves[3].innerText === "" && moves[6].innerText === "" ) {
+                    moves[3].innerText = "O";
+                } else if ( moves[0].innerText === "" && moves[3].innerText === "O" && moves[6].innerText === "") {
+                    moves[0].innerText = "O";
+                } else if ( moves[0].innerText === "" && moves[3].innerText === "" && moves[6].innerText === "O") {
+                    mvoes[3].innerText = "O";
+                }
+
+                // look for opporuntiy to make threat in column 2
+
+                  else if( moves[1].innerText === "O" && moves[4].innerText === "" && moves[7].innerText === "" ) {
+                    moves[4].innerText = "O";
+                } else if ( moves[1].innerText === "" && moves[4].innerText === "O" && moves[7].innerText === "") {
+                    moves[1].innerText = "O";
+                } else if ( moves[1].innerText === "" && moves[4].innerText === "" && moves[7].innerText === "O") {
+                    mvoes[4].innerText = "O";
+                }
+
+                // look for opportunity to make a threat in column 3
+
+                  else if( moves[2].innerText === "O" && moves[5].innerText === "" && moves[8].innerText === "" ) {
+                    moves[5].innerText = "O";
+                } else if ( moves[2].innerText === "" && moves[5].innerText === "O" && moves[8].innerText === "") {
+                    moves[2].innerText = "O";
+                } else if ( moves[2].innerText === "" && moves[5].innerText === "" && moves[8].innerText === "O") {
+                    mvoes[5].innerText = "O";
+                }
             }
 
         }
