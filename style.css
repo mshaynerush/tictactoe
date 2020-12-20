@@ -158,12 +158,12 @@ hr
 
     .flexBoard
     {
-        height: 40%;
+        height: 50%;
         width: 80%;
         margin: 0 auto;
         position: absolute;
         left: 10%;
-        padding: 30px;
+        padding: 15px;
         
     }
 
