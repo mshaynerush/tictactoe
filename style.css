@@ -163,6 +163,8 @@ hr
         margin: 0 auto;
         position: absolute;
         left: 10%;
+        padding: 10px;
+        
     }
 
     .result
