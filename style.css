@@ -6,7 +6,7 @@
 body
 {
     margin: 0;
-    padding: 0;
+    padding: 10px;
 }
 
 .gameBox
@@ -18,14 +18,14 @@ body
 {
     width: 100%;
     background-color: rgb(43, 0, 47);
-    min-height: 26%;
+    min-height: 30%;
     padding: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .main
 {
     display: block;
-    width: 370px;
+    width: 90%;
     position: relative;
     margin: 0 auto;
     text-align: center;
@@ -43,7 +43,7 @@ body
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 300px;
+    min-width: 50%;
     max-width: 300px;
     min-height: 300px;
     max-height: 300px;
@@ -139,7 +139,7 @@ body
 {
     position: relative;
     margin: 0 auto;
-    width: 400px;
+    width: 300px;
     text-align: center;
     margin-top: 15px;
 }
