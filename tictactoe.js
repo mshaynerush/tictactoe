@@ -159,14 +159,17 @@
             case 4:
                 console.log(turnCount)
                 var isThreat = checkThreat();
-	
+                var isLeap = checkLeapFrog();
                 if ( isThreat === true ) {
                         
                     turnCount++;
                     playerNum = 0;
                     nextTurn(playerNum);
                     break;
-            
+                } else if ( isLeap === true ) {
+
+                    checkOpp();
+                
                 } else if ( moves[4].innerText === "X" && ( moves[0].innerText === "X" || moves[2].innerText === "X" || moves[6].innerText === "X" || moves[8].innerText === "X" ) ) {
             
                     if ( moves[0].innerText === "X" && moves[8].innerText === "O" ) {
@@ -773,9 +776,9 @@
 
         function checkLeapFrog(){
             if ( moves[4].innerText === "O" && ( ( moves[0].innerText === "X" && moves[8].innerText === "X") ||( moves[2].innerText === "X" & moves[6].innerText === "X" ) ) ) {
-                checkOpp();
+                return true;
             } else {
-                return;
+                return false;
             }
         }
 
