@@ -166,10 +166,11 @@
                     playerNum = 0;
                     nextTurn(playerNum);
                     break;
+
                 } else if ( isLeap === true ) {
 
-                    if ( moves[1] === "" ) {
-                         moves[1] = "O"
+                    if ( moves[1].innerText === "" ) {
+                         moves[1].innerText = "O"
                          break;
                     }
                 
@@ -779,9 +780,11 @@
 
         function checkLeapFrog(){
             if ( moves[4].innerText === "O" && ( ( moves[0].innerText === "X" && moves[8].innerText === "X") || ( moves[2].innerText === "X" && moves[6].innerText === "X" ) ) ) {
-                return true;
+                isLeap = true;
+                return isLeap;
             } else {
-                return false;
+                isLeap = false
+                return isLeap;
             }
         }
 
