@@ -168,7 +168,10 @@
                     break;
                 } else if ( isLeap === true ) {
 
-                    checkOpp();
+                    if ( moves[1] === "" ) {
+                         moves[1] = "O"
+                         break;
+                    }
                 
                 } else if ( moves[4].innerText === "X" && ( moves[0].innerText === "X" || moves[2].innerText === "X" || moves[6].innerText === "X" || moves[8].innerText === "X" ) ) {
             
