@@ -778,7 +778,7 @@
         }
 
         function checkLeapFrog(){
-            if ( moves[4].innerText === "O" && ( ( moves[0].innerText === "X" && moves[8].innerText === "X") ||( moves[2].innerText === "X" & moves[6].innerText === "X" ) ) ) {
+            if ( moves[4].innerText === "O" && ( ( moves[0].innerText === "X" && moves[8].innerText === "X") || ( moves[2].innerText === "X" && moves[6].innerText === "X" ) ) ) {
                 return true;
             } else {
                 return false;
