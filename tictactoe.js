@@ -659,12 +659,20 @@
 
                 if ( moves[0].innerText === ""  && moves[8].innerText === "" ) {
                     moves[0].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[2].innerText === "" && moves[6].innerText === "" ) {
                     moves[2].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[1].innerText === "" && moves[7].innerText === "" ) {
                     moves[1].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[3].innerText === "" && moves[5].innerText === "" ) {
                     moves[3].innerText = "O"
+                    isOpp = true;
+                    return isOpp;
                 }
 
             } else {
@@ -672,59 +680,103 @@
                 // look for opportunity to make a threat in row 1
                 if( moves[0].innerText === "O" && moves[1].innerText === "" && moves[2].innerText === "" ) {
                     moves[1].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[0].innerText === "" && moves[1].innerText === "O" && moves[2].innerText === "") {
                     moves[0].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[0].innerText === "" && moves[1].innerText === "" && moves[2].innerText === "O") {
                     mvoes[0].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } 
                 // look for opportunity to make a threat in row 2
                   else if( moves[3].innerText === "O" && moves[4].innerText === "" && moves[5].innerText === "" ) {
                     moves[4].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[3].innerText === "" && moves[4].innerText === "O" && moves[5].innerText === "") {
                     moves[3].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[3].innerText === "" && moves[4].innerText === "" && moves[5].innerText === "O") {
                     mvoes[4].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 }
 
                 // look for opportunity to make a threat in row 3
                   else if( moves[6].innerText === "O" && moves[7].innerText === "" && moves[8].innerText === "" ) {
                     moves[7].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[6].innerText === "" && moves[7].innerText === "O" && moves[8].innerText === "") {
                     moves[6].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[6].innerText === "" && moves[7].innerText === "" && moves[8].innerText === "O") {
                     mvoes[7].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 }
 
                 // look for opportunity to make a threat in column 1
                   else if( moves[0].innerText === "O" && moves[3].innerText === "" && moves[6].innerText === "" ) {
                     moves[3].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[0].innerText === "" && moves[3].innerText === "O" && moves[6].innerText === "") {
                     moves[0].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[0].innerText === "" && moves[3].innerText === "" && moves[6].innerText === "O") {
                     mvoes[3].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 }
 
                 // look for opporuntiy to make threat in column 2
 
                   else if( moves[1].innerText === "O" && moves[4].innerText === "" && moves[7].innerText === "" ) {
                     moves[4].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[1].innerText === "" && moves[4].innerText === "O" && moves[7].innerText === "") {
                     moves[1].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[1].innerText === "" && moves[4].innerText === "" && moves[7].innerText === "O") {
                     mvoes[4].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 }
 
                 // look for opportunity to make a threat in column 3
 
                   else if( moves[2].innerText === "O" && moves[5].innerText === "" && moves[8].innerText === "" ) {
                     moves[5].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[2].innerText === "" && moves[5].innerText === "O" && moves[8].innerText === "") {
                     moves[2].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 } else if ( moves[2].innerText === "" && moves[5].innerText === "" && moves[8].innerText === "O") {
                     mvoes[5].innerText = "O";
+                    isOpp = true;
+                    return isOpp;
                 }
             }
 
+        }
+
+        function checkLeapFrog(){
+            if ( moves[4].innerText === "O" && ( ( moves[0].innerText === "X" && moves[8].innerText === "X") ||( moves[2].innerText === "X" & moves[6].innerText === "X" ) ) ) {
+                checkOpp();
+            } else {
+                return;
+            }
         }
 
         function randomCorner(corner) {
