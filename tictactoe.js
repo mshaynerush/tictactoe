@@ -26,7 +26,7 @@
 
         if ( turnCount == 1 ) {
 
-            let playerNum = getPlayer(100);
+            let playerNum = getPlayer(1000);
             if ( playerNum === 0 ) {
                 playerNum = 0;
             } else {
